@@ -20,33 +20,10 @@ const Home = () => {
         published_at: string,
         id: string 
     }[]
-    const { scrollY } = useScroll();
-    const [hidden, setHidden] = useState<boolean>(false);
-    const [isScroll, setIsScroll] = useState<boolean>(false);
     const itemsPerPage = useSelector((state: any) => state.reducer.totalItemsPerPage)
     const currentPage = useSelector((state: any) => state.reducer.currentPage)
     const itemOrdersByDate = useSelector((state: any) => state.reducer.itemOrderByDate)
     const [data, setData] = useState<dataType>([])
-    const [date, setDate] = useState('published_at')
-
-
-
-    useMotionValueEvent(scrollY, "change", (latest) => {
-        const previous = scrollY.getPrevious();
-
-        setIsScroll(true)
-
-        if(latest > previous) {
-            setHidden(true)
-        } else {
-            setHidden(false)
-        }
-
-        setTimeout(() => {
-            setIsScroll(false)
-        }, 700)
-
-    })
 
     async function getData(x: number, y: number, z: string) {
         const url = `https://suitmedia-backend.suitdev.com/api/ideas?page[number]=${x}&page[size]=${y}&append[]=small_image&append[]=medium_image&sort=${z}`
@@ -71,21 +48,7 @@ const Home = () => {
     }, [])
 
     return (
-        <div>
-            <div className='relative z-[100]'>    
-                <motion.nav 
-                variants={{
-                    default: { y:0, opacity: 1 },
-                    visible: { y:0, opacity: 0.8 },
-                    hidden: { y:"-100%", opacity: 0 },
-                }}
-                animate= {isScroll === false ? "default" : hidden ? "hidden" : "visible"} 
-                transition={{duration: 0.35, ease:"easeInOut"}}
-                className='navbar fixed top-0 w-full'>
-                    <Navbar/>
-                </motion.nav>
-                <Sidebar/>
-            </div>            
+        <div>          
             <div>
                 <Banner/>
             </div>

@@ -1,3 +1,4 @@
+import { act } from 'react-dom/test-utils'
 import { combineReducers } from 'redux'
 
 type stateType = {
@@ -5,13 +6,15 @@ type stateType = {
     totalItemsPerPage: number
     itemOrderByDate: string
     currentPage: number
+    userNavigation: string
 }
 
 const initialState: stateType = {
     isNavbarActive: false,
     totalItemsPerPage: 10,
     itemOrderByDate: "oldest",
-    currentPage: 1
+    currentPage: 1,
+    userNavigation: 'ideas'
 }
 
 type actionType = {
@@ -46,6 +49,11 @@ const Reducer = (state = initialState, action: actionType) => {
             return {
                 ...state,
                 currentPage: action.payload
+            }
+        case 'CHANGES_USER_NAVIGATION':
+            return {
+                ...state,
+                userNavigation: action.payload
             }
         default:
             return state;

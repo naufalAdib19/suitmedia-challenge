@@ -25,3 +25,10 @@ export const setCurrentPage = (data: number) => {
         payload: data
     })
 }
+
+export const setNavigationUser = (data: string) => {
+    return({
+        type: "CHANGES_USER_NAVIGATION",
+        payload: data
+    })
+}
