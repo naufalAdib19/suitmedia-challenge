@@ -15,12 +15,13 @@ const PageNumber = () => {
     }
 
     function pageOnClick(page: number) {
-        setNowPage(page)
+        dispatch(setCurrentPage(page))
     }
 
-    useEffect(() => {
+    /* useEffect(() => {
         dispatch(setCurrentPage(nowPage))
-    }, [nowPage])
+    }, [nowPage]) */
+
 
     return(
         <div className="flex gap-x-3">

@@ -64,11 +64,10 @@ const Home = () => {
         } else {
             getData(currentPage, itemsPerPage, 'published_at')
         }
-       /*  getData(currentPage, itemsPerPage, date) */
     }, [itemsPerPage, currentPage, itemOrdersByDate])
 
     useEffect(() => {
-        getData(currentPage, itemsPerPage, date)
+        getData(currentPage, itemsPerPage, 'published_at')
     }, [])
 
     return (
