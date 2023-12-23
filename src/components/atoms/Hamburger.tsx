@@ -21,7 +21,7 @@ const Hamburger = () => {
         }
         dispatch(setNavbarState(!isHamburgerButtonActive))
     }
-    
+
     return(
         <div className="flex flex-col gap-y-[5px]" onClick={onClickHamurgerButton}>
             <div className="w-[25px] h-[3px] bg-white origin-top-left transition duration-300" ref={firstDiv}></div>

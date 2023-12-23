@@ -2,10 +2,16 @@ import { combineReducers } from 'redux'
 
 type stateType = {
     isNavbarActive: boolean
+    totalItemsPerPage: number
+    itemOrderByDate: string
+    currentPage: number
 }
 
 const initialState: stateType = {
-    isNavbarActive: false
+    isNavbarActive: false,
+    totalItemsPerPage: 10,
+    itemOrderByDate: "oldest",
+    currentPage: 1
 }
 
 type actionType = {
@@ -26,6 +32,21 @@ const Reducer = (state = initialState, action: actionType) => {
                 ...state,
                 isNavbarActive: action.payload
             };
+        case 'CHANGES_TOTAL_ITEMS':
+            return {
+                ...state,
+                totalItemsPerPage: action.payload
+            };
+        case 'CHANGES_ITEM_ORDER':
+            return {
+                ...state,
+                itemOrderByDate: action.payload
+            }
+        case 'CHANGES_PAGE':
+            return {
+                ...state,
+                currentPage: action.payload
+            }
         default:
             return state;
     }
